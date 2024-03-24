@@ -1,0 +1,58 @@
+.sidebar-container {
+    position: fixed;
+    top: 48px; /* Height of the header */
+    left: 0;
+    bottom: 0;
+    width: 50px; /* Adjust width as needed */
+    background-color: #ffffff; /* Set background color */
+    z-index: 1000;
+    overflow-y: auto;
+    /* transition: width 0.5s cubic-bezier(0.42, 0, 0.58, 1); Add transition for width changes with cubic-bezier timing function */
+  }
+  
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-right: 1px solid #d3dae6; /* Border on the right */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+  }
+  
+  .sidebar-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; Center the content vertically */
+    text-align: center; /* Center the content horizontally */
+  }
+  
+  .with-children .euiListGroupItem__text {
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar-child {
+    margin-left: 20px;
+  }
+  
+  .sidebar-container.expanded {
+    width: 200px; /* Width when expanded */
+  }
+  
+  .sidebar-container.expanded .euiIcon {
+    transition: color 0.5s cubic-bezier(0.42, 0, 0.58, 1); /* Add transition for icon color changes with cubic-bezier timing function */
+  }
+  
+  /* .sidebar-container.expanded .euiListGroupItem__text {
+    transition: color 0.5s cubic-bezier(0.42, 0, 0.58, 1); 
+  } */
+
+  .ghost-color .euiListGroupItem__label {
+    color: rgba(21, 0, 78, 0.971); /* Adjust the color to your preference */
+  }
+  
+  /* Define blue color for expanded state icons */
+  .expanded-icon {
+    color: blue; /* Set color to blue */
+  }
+  
