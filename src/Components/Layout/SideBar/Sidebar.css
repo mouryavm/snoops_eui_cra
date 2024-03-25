@@ -55,4 +55,35 @@
   .expanded-icon {
     color: blue; /* Set color to blue */
   }
+
+
+  .sidebar {
+    transition: width 0.3s ease;
+  }
+  
+  .sidebar-content {
+    padding: 10px;
+  }
+  
+  .with-children {
+    cursor: pointer;
+  }
+  
+  .sidebar-child {
+    margin-left: 20px;
+  }
+  
+  .open {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+  }
+  
+  .sidebar-container.expanded .sidebar {
+    width: 200px;
+  }
+  
+  .sidebar-container:not(.expanded) .sidebar {
+    width: 50px;
+  }
+  
   

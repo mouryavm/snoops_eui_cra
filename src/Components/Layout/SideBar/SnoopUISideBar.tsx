@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { EuiListGroupItem } from "@elastic/eui";
+import { EuiIcon, EuiListGroupItem } from "@elastic/eui";
 import { SideBarNavData } from "./SideBarNavData";
 import "./Sidebar.css";
 import { useNavigate } from "react-router-dom";
@@ -13,10 +13,10 @@ const SnoopUISideBar: React.FC<SnoopUISideBarProps> = ({ isExpanded }) => {
   const navigate = useNavigate();
 
   const toggleItem = (itemId: number) => {
-    setOpenItems(
-      openItems.includes(itemId)
-        ? openItems.filter((id) => id !== itemId)
-        : [...openItems, itemId]
+    setOpenItems((prevItems) =>
+      prevItems.includes(itemId)
+        ? prevItems.filter((id) => id !== itemId)
+        : [...prevItems, itemId]
     );
   };
 
@@ -24,7 +24,7 @@ const SnoopUISideBar: React.FC<SnoopUISideBarProps> = ({ isExpanded }) => {
     name: string;
     id: number;
     icon: string;
-    path?: string; // Added path property for single items
+    path?: string;
     items?: { name: string; id: number; path?: string }[];
   }) => {
     const hasChildren = item.items && item.items.length > 0;
@@ -34,18 +34,18 @@ const SnoopUISideBar: React.FC<SnoopUISideBarProps> = ({ isExpanded }) => {
       <div key={item.id}>
         <EuiListGroupItem
           size="s"
-          color="primary"
-          style={{ marginLeft: 8 }}
           iconType={item.icon}
           label={isExpanded ? item.name : ""}
           onClick={() => {
             if (hasChildren) {
               toggleItem(item.id);
-            } else if (item.path) { // If single item and has a path, navigate
+            } else if (item.path) {
               navigate(item.path);
             }
           }}
-          className={isExpanded && hasChildren ? "with-children" : ""}
+          className={`sidebar-item ${isExpanded && hasChildren ? "with-children" : ""} ${
+            isOpen ? "open" : ""
+          }`}
         />
         {isExpanded &&
           hasChildren &&
@@ -56,6 +56,7 @@ const SnoopUISideBar: React.FC<SnoopUISideBarProps> = ({ isExpanded }) => {
                 size="s"
                 label={childItem.name}
                 onClick={() => navigate(childItem.path || "/reports")}
+                className="sidebar-item"
               />
             </div>
           ))}

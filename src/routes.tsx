@@ -7,9 +7,14 @@ import {
 } from "react-router-dom";
 import Layout from "./Components/Layout";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import LoginPage from './pages/Login/index';
+import RegisterPage from "./pages/Register";
+import ForgotPasswordPage from "./pages/Forgot";
+
 
 const StatsPage = React.lazy(() => import("./pages/Stats"));
 const HomePage = React.lazy(() => import("./pages/Home"));
+
 
 const IsSignIn = true;
 
@@ -59,7 +64,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "login",
-        element: <>Ok TODO Login page</>,
+        element: <LoginPage/>,
+      },
+      {
+        path: "register",
+        element: <RegisterPage/>,
+      },
+      {
+        path: "forgot",
+        element: <ForgotPasswordPage/>,
       },
     ],
   },
