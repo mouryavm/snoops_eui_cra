@@ -10,6 +10,9 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import LoginPage from './pages/Login/index';
 import RegisterPage from "./pages/Register";
 import ForgotPasswordPage from "./pages/Forgot";
+import NotFoundPage from "./pages/Error/NotFound";
+import AddSourcesPage from "./pages/Logs/AddSources/AddSourcesPage";
+
 
 
 const StatsPage = React.lazy(() => import("./pages/Stats"));
@@ -53,8 +56,17 @@ const router = createBrowserRouter([
         element: <StatsPage />,
       },
       {
-        path: "/dashboard",
+        path: "dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "logs/addSources",
+        element: <AddSourcesPage />,
+      },
+   
+      {
+        path: "*",
+        element: <NotFoundPage/>,
       },
     ],
   },
@@ -74,6 +86,7 @@ const router = createBrowserRouter([
         path: "forgot",
         element: <ForgotPasswordPage/>,
       },
+      
     ],
   },
 ]);

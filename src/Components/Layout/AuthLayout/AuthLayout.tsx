@@ -11,7 +11,8 @@ interface AuthLayoutProps {
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({ title, description }) => {
   return (
-    <>
+    <div className="auth-layout-container">
+      <div className="background-image" />
       <div className="auth-container">
         <div className="card-container">
           <div className="image-container">
@@ -30,12 +31,12 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ title, description }) => {
               description={description || ""}
               display="plain"
               paddingSize="l"
-              style={{borderRadius:"10px"}}
+              style={{ borderRadius: "10px" }}
             />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

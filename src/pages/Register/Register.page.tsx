@@ -6,9 +6,6 @@ import {
   EuiFieldPassword,
   EuiButton,
   EuiFormRow,
-  EuiIcon,
-  EuiPopover,
-  EuiPopoverTitle,
   EuiText,
   EuiCheckbox,
 } from "@elastic/eui";

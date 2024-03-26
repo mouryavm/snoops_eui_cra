@@ -3,11 +3,12 @@ import {
   EuiHeader,
   EuiImage,
   EuiButtonIcon,
-  EuiPopover,
   EuiAvatar,
-  EuiText,
+  EuiContextMenuPanel,
+  EuiContextMenuItem,
 } from "@elastic/eui";
 import logo from "../../../assets/Snoops.svg";
+import "./SnoopUIHeader.css"; // Import custom CSS file for styling
 
 interface SnoopUIHeaderProps {
   isExpanded: boolean;
@@ -18,50 +19,41 @@ const SnoopUIHeader: React.FC<SnoopUIHeaderProps> = ({
   isExpanded,
   toggleSidebar,
 }) => {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const closePopover = () => setIsPopoverOpen(false);
-  const togglePopover = () => setIsPopoverOpen(!isPopoverOpen);
-
-  const ProfileMenu = (
-    <EuiPopover
-      id="profileMenu"
-      button={<EuiAvatar size="l" name="John Doe" onClick={togglePopover} />}
-      isOpen={isPopoverOpen}
-      closePopover={closePopover}
-      anchorPosition="downRight"
-      panelPaddingSize="s"
-    >
-      <div style={{ width: 240 }}>
-        <EuiText size="s">
-          <p>John Doe</p>
-          <p>Email: johndoe@example.com</p>
-        </EuiText>
-        {/* Add more menu items here */}
-      </div>
-    </EuiPopover>
-  );
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <EuiHeader>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "auto 1fr auto",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <EuiImage src={logo} alt="test" height={40} />
-          <button onClick={toggleSidebar} style={{ marginLeft: 16 }}>
-            <EuiButtonIcon
-              iconType={isExpanded ? "menuLeft" : "menuRight"}
-              color="text"
-              aria-label="Toggle Sidebar"
-            />
+    <EuiHeader className="snoop-header">
+      <div className="snoop-header-left">
+        <EuiImage src={logo} alt="test" height={40} />
+        <button
+          onClick={toggleSidebar}
+          className={`snoop-menu-button ${isExpanded ? "expanded" : ""}`}
+        >
+          <EuiButtonIcon
+            iconType={isExpanded ? "menuLeft" : "menuRight"}
+            color="primary"
+            aria-label="Toggle Sidebar"
+          />
+        </button>
+      </div>
+      <div className="snoop-header-right">
+        <div className="snoop-avatar-container">
+          <button onClick={toggleMenu}>
+            <EuiAvatar name="John Doe" size="m" />
           </button>
+          {isMenuOpen && (
+            <EuiContextMenuPanel className="snoop-context-menu" items={[
+              <EuiContextMenuItem key="profile">
+                <div>Name: John Doe</div>
+                <div>Email: johndoe@example.com</div>
+              </EuiContextMenuItem>,
+              // Add more menu items here
+            ]} />
+          )}
         </div>
-        <div style={{ marginLeft: 16 }}>{ProfileMenu}</div>
       </div>
     </EuiHeader>
   );

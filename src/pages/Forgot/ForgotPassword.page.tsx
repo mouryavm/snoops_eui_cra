@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import {
   EuiButton,
   EuiFieldText,
-  EuiForm,
   EuiFormRow,
   EuiText,
 } from "@elastic/eui";

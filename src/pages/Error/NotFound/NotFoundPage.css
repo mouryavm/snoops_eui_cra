@@ -1,0 +1,19 @@
+.not-found-page {
+  height: 100vh; /* Make the page fill the viewport height */
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+
+.not-found-page-body {
+  width: 100%; /* Ensure the page body takes full width */
+}
+
+.not-found-content {
+  text-align: center; /* Center text content */
+}
+
+/* Adjust styles for the button as needed */
+.not-found-content .euiButton--primary {
+  margin-top: 20px; /* Add margin for spacing */
+}
