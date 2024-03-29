@@ -21,13 +21,14 @@ const SnoopUIHeader: React.FC<SnoopUIHeaderProps> = ({
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const closeMenu = () => setIsMenuOpen(false);
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev); // Toggle menu visibility
+  const closeMenu = () => setIsMenuOpen(false); // Function to close menu
 
   return (
     <EuiHeader className="snoop-header">
       <div className="snoop-header-left">
         <EuiImage src={logo} alt="test" height={40} />
+        <div></div>
         <button
           onClick={toggleSidebar}
           className={`snoop-menu-button ${isExpanded ? "expanded" : ""}`}
@@ -44,14 +45,17 @@ const SnoopUIHeader: React.FC<SnoopUIHeaderProps> = ({
           <button onClick={toggleMenu}>
             <EuiAvatar name="John Doe" size="m" />
           </button>
-          {isMenuOpen && (
-            <EuiContextMenuPanel className="snoop-context-menu" items={[
-              <EuiContextMenuItem key="profile">
-                <div>Name: John Doe</div>
-                <div>Email: johndoe@example.com</div>
-              </EuiContextMenuItem>,
-              // Add more menu items here
-            ]} />
+          {isMenuOpen && ( // Render the context menu panel only if isMenuOpen is true
+            <EuiContextMenuPanel
+              className="snoop-context-menu"
+              items={[
+                <EuiContextMenuItem key="profile" onClick={closeMenu}> {/* Close menu when clicked */}
+                  <div>Name: John Doe</div>
+                  <div>Email: johndoe@example.com</div>
+                </EuiContextMenuItem>,
+                // Add more menu items here
+              ]}
+            />
           )}
         </div>
       </div>

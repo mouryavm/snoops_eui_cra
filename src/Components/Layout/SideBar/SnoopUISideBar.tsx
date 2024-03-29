@@ -34,7 +34,6 @@ const SnoopUISideBar: React.FC<SnoopUISideBarProps> = ({ isExpanded }) => {
   }) => {
     const hasChildren = item.items && item.items.length > 0;
     const isOpen = openItems.includes(item.id);
-    const isParent = hasChildren && isExpanded;
 
     return (
       <div key={item.id}>
@@ -43,6 +42,7 @@ const SnoopUISideBar: React.FC<SnoopUISideBarProps> = ({ isExpanded }) => {
           label={item.name}
           color="primary"
           size="s"
+        
           onClick={() => {
             if (item.id === -1) {
               toggleItem(-1); // Toggle settings item
@@ -55,7 +55,7 @@ const SnoopUISideBar: React.FC<SnoopUISideBarProps> = ({ isExpanded }) => {
           }}
           className={`sidebar-item ${isExpanded && hasChildren ? "with-children" : ""} ${
             isOpen ? "open" : ""
-          } ${item.id === -1 ? "settings" : ""} ${isParent ? "parent-bold" : ""}`}
+          } ${item.id === -1 ? "settings" : ""}`}
         />
         {isExpanded && hasChildren && isOpen && renderChildItems(item.items)}
       </div>

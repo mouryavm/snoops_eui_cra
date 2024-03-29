@@ -75,6 +75,7 @@ const LoginScreen: React.FC = () => {
                           <EuiFieldPassword
                             fullWidth
                             placeholder="Password"
+                            type="dual"
                             {...field}
                             isInvalid={!!meta.error && meta.touched}
                           />

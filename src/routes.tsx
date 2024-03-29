@@ -12,6 +12,8 @@ import RegisterPage from "./pages/Register";
 import ForgotPasswordPage from "./pages/Forgot";
 import NotFoundPage from "./pages/Error/NotFound";
 import AddSourcesPage from "./pages/Logs/AddSources/AddSourcesPage";
+import FileUpload from "./pages/Logs/AddSources/Upload/FileUpload";
+import S3bucket from "./pages/Logs/AddSources/s3Bucket";
 
 
 
@@ -62,6 +64,14 @@ const router = createBrowserRouter([
       {
         path: "logs/addSources",
         element: <AddSourcesPage />,
+      },
+      {
+        path: "logs/addSources/fileupload",
+        element: <FileUpload />,
+      },
+      {
+        path: "logs/addSources/s3bucket",
+        element: <S3bucket/>,
       },
    
       {

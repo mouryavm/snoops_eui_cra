@@ -130,6 +130,7 @@ const RegisterPage: React.FC = () => {
                         placeholder="Password"
                         fullWidth
                         required
+                        type='dual'
                         {...field}
                       />
                       {meta.touched && meta.error && (
