@@ -1,47 +1,33 @@
 /* SnoopUIHeader.css */
-
 .snoop-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
-    color: aqua;
-
-    padding: 8px 16px; /* Add padding for spacing */
-}
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+  }
   
-.snoop-header-left {
+  .snoop-header-left {
     display: flex;
     align-items: center;
-}
+  }
   
-.snoop-menu-button {
-    margin-left: 16px; /* Add margin to separate the button from the logo */
-    padding: 8px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.snoop-menu-button.expanded {
-    transform: rotate(180deg); /* Rotate icon when sidebar is expanded */
-}
+  .snoop-menu-button {
+    margin-right: 10px;
+  }
   
-.snoop-header-right {
-    display: flex;
-    align-items: center;
-}
-
-.snoop-avatar-container {
+  .snoop-header-right {
     position: relative;
-}
-
-.snoop-context-menu {
-
-    background-color:rgb(255, 255, 255);
-    box-shadow: 0px 4px 8px rgba(45, 44, 52, 0.323);
-    top: calc(100% + px); /* Position the context menu below the avatar */
+  }
+  
+  .snoop-avatar-container {
+    position: relative;
+  }
+  
+  .snoop-callout {
+    position: absolute;
+    top: calc(100% + 10px); /* Adjust this value as needed */
     right: 0;
-    width: 200px; /* Adjust the width as needed */
-    padding: 8px; /* Add padding to the menu items */
-}
+    z-index: 10;
+  }
+  

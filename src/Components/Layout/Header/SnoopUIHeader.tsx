@@ -1,14 +1,18 @@
+// SnoopUIHeader.tsx
 import React, { useState } from "react";
 import {
   EuiHeader,
   EuiImage,
   EuiButtonIcon,
   EuiAvatar,
-  EuiContextMenuPanel,
-  EuiContextMenuItem,
+  EuiCallOut,
+  EuiText,
+  EuiButtonEmpty,
+  EuiButton,
 } from "@elastic/eui";
 import logo from "../../../assets/Snoops.svg";
-import "./SnoopUIHeader.css"; // Import custom CSS file for styling
+import "./SnoopUIHeader.css";
+import { useAuthContext } from "../../../context/AuthContext/AuthProvider";
 
 interface SnoopUIHeaderProps {
   isExpanded: boolean;
@@ -19,10 +23,13 @@ const SnoopUIHeader: React.FC<SnoopUIHeaderProps> = ({
   isExpanded,
   toggleSidebar,
 }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCalloutVisible, setIsCalloutVisible] = useState(false);
 
-  const toggleMenu = () => setIsMenuOpen((prev) => !prev); // Toggle menu visibility
-  const closeMenu = () => setIsMenuOpen(false); // Function to close menu
+  const toggleCallout = () => setIsCalloutVisible((prev) => !prev);
+  
+  const {  logout } = useAuthContext();
+
+  const handleLogout = () => logout();
 
   return (
     <EuiHeader className="snoop-header">
@@ -42,20 +49,23 @@ const SnoopUIHeader: React.FC<SnoopUIHeaderProps> = ({
       </div>
       <div className="snoop-header-right">
         <div className="snoop-avatar-container">
-          <button onClick={toggleMenu}>
+          <button onClick={toggleCallout}>
             <EuiAvatar name="John Doe" size="m" />
           </button>
-          {isMenuOpen && ( // Render the context menu panel only if isMenuOpen is true
-            <EuiContextMenuPanel
-              className="snoop-context-menu"
-              items={[
-                <EuiContextMenuItem key="profile" onClick={closeMenu}> {/* Close menu when clicked */}
-                  <div>Name: John Doe</div>
-                  <div>Email: johndoe@example.com</div>
-                </EuiContextMenuItem>,
-                // Add more menu items here
-              ]}
-            />
+          {isCalloutVisible && (
+            <EuiCallOut
+              className="snoop-callout"
+              title="John Doe"
+              color="primary"
+              iconType="user"
+              style={{marginTop:20}}
+            >
+              <EuiText> johndoe@example.com</EuiText>
+              <EuiButton onClick={handleLogout}>Logout</EuiButton>
+              <EuiButtonEmpty size="s" onClick={toggleCallout}>
+                Close
+              </EuiButtonEmpty>
+            </EuiCallOut>
           )}
         </div>
       </div>

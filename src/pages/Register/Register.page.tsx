@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 const RegisterSchema = Yup.object().shape({
   firstName: Yup.string().required("Please enter your first name"),
   lastName: Yup.string().required("Please enter your last name"),
-  organisation: Yup.string().required("Please enter your organisation name"),
+  organization: Yup.string().required("Please enter your organization name"),
   email: Yup.string()
     .email("Please enter a valid email address")
     .required("Please enter your email address"),
@@ -31,150 +31,154 @@ const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <AuthLayout
-      title="Register"
-      description={
-        <Formik
-          initialValues={{
-            firstName: "",
-            lastName: "",
-            organisation: "",
-            email: "",
-            password: "",
-            isTermsAccepted: false,
-          }}
-          validationSchema={RegisterSchema}
-          onSubmit={(values: any, { setSubmitting }: any) => {
-            setTimeout(() => {
-              console.log("Registered with:", values);
-              setSubmitting(false);
-            }, 400);
-          }}
-        >
-          {({ isSubmitting }: any) => (
-            <Form>
-              <EuiFormRow>
-                <Field name="firstName">
-                  {({ field, meta }: { field: any; meta: any }) => (
-                    <div>
-                      <EuiFieldText
-                        placeholder="First Name"
-                        fullWidth
-                        required
-                        {...field}
-                      />
-                      {meta.touched && meta.error && (
-                        <div style={{ color: "red" }}>{meta.error}</div>
-                      )}
-                    </div>
-                  )}
-                </Field>
-              </EuiFormRow>
-              <EuiFormRow>
-                <Field name="lastName">
-                  {({ field, meta }: { field: any; meta: any }) => (
-                    <div>
-                      <EuiFieldText
-                        placeholder="Last Name"
-                        fullWidth
-                        required
-                        {...field}
-                      />
-                      {meta.touched && meta.error && (
-                        <div style={{ color: "red" }}>{meta.error}</div>
-                      )}
-                    </div>
-                  )}
-                </Field>
-              </EuiFormRow>
-              <EuiFormRow>
-                <Field name="organisation">
-                  {({ field, meta }: { field: any; meta: any }) => (
-                    <div>
-                      <EuiFieldText
-                        placeholder="Organisation Name"
-                        fullWidth
-                        required
-                        {...field}
-                      />
-                      {meta.touched && meta.error && (
-                        <div style={{ color: "red" }}>{meta.error}</div>
-                      )}
-                    </div>
-                  )}
-                </Field>
-              </EuiFormRow>
-              <EuiFormRow>
-                <Field name="email">
-                  {({ field, meta }: { field: any; meta: any }) => (
-                    <div>
-                      <EuiFieldText
-                        type="email"
-                        placeholder="Email Address"
-                        fullWidth
-                        required
-                        {...field}
-                      />
-                      {meta.touched && meta.error && (
-                        <div style={{ color: "red" }}>{meta.error}</div>
-                      )}
-                    </div>
-                  )}
-                </Field>
-              </EuiFormRow>
-              <EuiFormRow>
-                <Field name="password">
-                  {({ field, meta }: { field: any; meta: any }) => (
-                    <div>
-                      <EuiFieldPassword
-                        placeholder="Password"
-                        fullWidth
-                        required
-                        type='dual'
-                        {...field}
-                      />
-                      {meta.touched && meta.error && (
-                        <div style={{ color: "red" }}>{meta.error}</div>
-                      )}
-                    </div>
-                  )}
-                </Field>
-              </EuiFormRow>
-              <EuiFormRow>
-                <Field name="isTermsAccepted" type="checkbox">
-                  {({ field }: { field: any }) => (
-                    <EuiCheckbox
-                      id="termsCheckbox"
-                      label="I Accept to the Privacy Policy and Terms & Conditions"
-                      {...field}
-                    />
-                  )}
-                </Field>
-              </EuiFormRow>
-              <EuiButton
-                fullWidth
-                type="submit"
-                fill
-                isLoading={isSubmitting}
-                onClick={() => navigate("/auth/login")}
-              >
-                Register
-              </EuiButton>
-              <EuiText
-                size="s"
-                color="subdued"
-                textAlign="center"
-                style={{ marginTop: 7 }}
-              >
-                <p>
-                  <a onClick={() => navigate("/auth/login")}>Back to Login </a>
-                </p>
-              </EuiText>
-            </Form>
-          )}
-        </Formik>
-      }
-    />
+    <AuthLayout title="Register">
+      <Formik
+        validateOnMount={false}
+        initialValues={{
+          firstName: "",
+          lastName: "",
+          organization: "",
+          email: "",
+          password: "",
+          isTermsAccepted: false,
+        }}
+        validationSchema={RegisterSchema}
+        onSubmit={(values: any, { setSubmitting }: any) => {
+          setTimeout(() => {
+            console.log("Registered with:", values);
+            setSubmitting(false);
+          }, 400);
+        }}
+      >
+        {({ isSubmitting }: any) => (
+          <Form>
+            <EuiFormRow>
+            <Field name="firstName">
+              {({ field, meta }: { field: any; meta: any }) => (
+                <EuiFormRow
+                  label="First Name"
+                  error={meta.touched && meta.error ? meta.error : undefined}
+                  isInvalid={meta.touched && meta.error}
+                >
+                  <EuiFieldText
+                    placeholder="First Name"
+                    fullWidth
+                    required
+                    {...field}
+                  />
+                </EuiFormRow>
+              )}
+            </Field>
+            </EuiFormRow>
+            <Field name="lastName">
+              {({ field, meta }: { field: any; meta: any }) => (
+                <EuiFormRow
+                  label="Last Name"
+                  error={meta.touched && meta.error ? meta.error : undefined}
+                 // helpText={meta.touched && meta.error ? meta.error : undefined}
+                  isInvalid={meta.touched && meta.error}
+                >
+                  <EuiFieldText
+                    placeholder="Last Name"
+                    fullWidth
+                    required
+                    {...field}
+                  />
+                </EuiFormRow>
+              )}
+            </Field>
+            <EuiFormRow>
+            <Field name="organization">
+              {({ field, meta }: { field: any; meta: any }) => (
+                <EuiFormRow
+                  label="Organization"
+                  error={meta.touched && meta.error ? meta.error : undefined}
+                 // helpText={meta.touched && meta.error ? meta.error : undefined}
+                  isInvalid={meta.touched && meta.error}
+                >
+                  <EuiFieldText
+                    placeholder="Organization"
+                    fullWidth
+                    required
+                    {...field}
+                  />
+                </EuiFormRow>
+              )}
+            </Field>
+            </EuiFormRow>
+            <EuiFormRow>
+            <Field name="email">
+              {({ field, meta }: { field: any; meta: any }) => (
+                <EuiFormRow
+                  label="Email "
+                  error={meta.touched && meta.error ? meta.error : undefined}
+                 // helpText={meta.touched && meta.error ? meta.error : undefined}
+                  isInvalid={meta.touched && meta.error}
+                >
+                  <EuiFieldText
+                    placeholder="Email"
+                    fullWidth
+                    required
+                    {...field}
+                  />
+                </EuiFormRow>
+              )}
+            </Field>
+            </EuiFormRow>
+            <EuiFormRow>
+            <Field name="password">
+              {({ field, meta }: { field: any; meta: any }) => (
+                <EuiFormRow
+                  label="Password "
+                  error={meta.touched && meta.error ? meta.error : undefined}
+                 // helpText={meta.touched && meta.error ? meta.error : undefined}
+                  isInvalid={meta.touched && meta.error}
+                >
+                  <EuiFieldPassword
+                    placeholder="Password"
+                    fullWidth
+                    required
+                    type='dual'
+                    {...field}
+                  />
+                </EuiFormRow>
+              )}
+            </Field>
+            </EuiFormRow>
+            <EuiFormRow>
+              <Field name="isTermsAccepted" type="checkbox">
+                {({ field }: { field: any }) => (
+                  <EuiCheckbox
+                    id="termsCheckbox"
+                    label="I Accept to the Privacy Policy and Terms & Conditions"
+                    {...field}
+                  />
+                )}
+              </Field>
+            </EuiFormRow>
+            <EuiButton
+              fullWidth
+              type="submit"
+              fill
+              isLoading={isSubmitting}
+              onClick={() => navigate("/auth/login")}
+            >
+              Register
+            </EuiButton>
+            <EuiText
+              size="s"
+              color="subdued"
+              textAlign="center"
+              style={{ marginTop: 7 }}
+            >
+              <p>
+                <a onClick={() => navigate("/auth/login")}>Back to Login </a>
+              </p>
+            </EuiText>
+          </Form>
+        )}
+      </Formik>
+    </AuthLayout>
   );
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   createBrowserRouter,
   Navigate,
@@ -7,41 +7,45 @@ import {
 } from "react-router-dom";
 import Layout from "./Components/Layout";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import LoginPage from './pages/Login/index';
+import LoginPage from "./pages/Login/index";
 import RegisterPage from "./pages/Register";
 import ForgotPasswordPage from "./pages/Forgot";
 import NotFoundPage from "./pages/Error/NotFound";
 import AddSourcesPage from "./pages/Logs/AddSources/AddSourcesPage";
 import FileUpload from "./pages/Logs/AddSources/Upload/FileUpload";
 import S3bucket from "./pages/Logs/AddSources/s3Bucket";
-
-
+import { useAuthContext } from "./context/AuthContext/AuthProvider";
 
 const StatsPage = React.lazy(() => import("./pages/Stats"));
 const HomePage = React.lazy(() => import("./pages/Home"));
 
+//const IsSignIn = false;
 
-const IsSignIn = true;
-
+// Function to render protected routes
 const ProtectedRoute = () => {
-  if (IsSignIn) {
+  const { isSignIn } = useAuthContext();
+  if (isSignIn) {
     return (
-      <Layout>
+      <Layout.PageLayout>
         <Outlet />
-      </Layout>
+      </Layout.PageLayout>
     );
-  } else return <Navigate to="auth/login" />;
+  } else {
+    return <Navigate to="/auth/login" />;
+  }
 };
 
 const AuthRoute = () => {
-  if (IsSignIn) {
-    return <Navigate to="/" />;
-  } else
+  const { isSignIn } = useAuthContext();
+  if (isSignIn) {
+    return <Navigate to="/dashboard" />;
+  } else {
     return (
       <div>
         <Outlet />
       </div>
     );
+  }
 };
 
 const router = createBrowserRouter([
@@ -71,12 +75,12 @@ const router = createBrowserRouter([
       },
       {
         path: "logs/addSources/s3bucket",
-        element: <S3bucket/>,
+        element: <S3bucket />,
       },
-   
+
       {
         path: "*",
-        element: <NotFoundPage/>,
+        element: <NotFoundPage />,
       },
     ],
   },
@@ -86,17 +90,16 @@ const router = createBrowserRouter([
     children: [
       {
         path: "login",
-        element: <LoginPage/>,
+        element: <LoginPage />,
       },
       {
         path: "register",
-        element: <RegisterPage/>,
+        element: <RegisterPage />,
       },
       {
         path: "forgot",
-        element: <ForgotPasswordPage/>,
+        element: <ForgotPasswordPage />,
       },
-      
     ],
   },
 ]);

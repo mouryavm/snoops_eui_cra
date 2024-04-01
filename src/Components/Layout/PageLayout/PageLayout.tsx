@@ -1,10 +1,10 @@
 import React from "react";
-import SnoopUISideBar from "./SideBar";
-import SnoopUIHeader from "./Header";
+import SnoopUISideBar from "../SideBar";
+import SnoopUIHeader from "../Header";
 
-interface LayoutProps extends React.PropsWithChildren {}
+interface PageLayoutProps extends React.PropsWithChildren {}
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
 
   const toggleSidebar = () => {
@@ -28,4 +28,4 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   );
 };
 
-export default Layout;
+export default PageLayout;

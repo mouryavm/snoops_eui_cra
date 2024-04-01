@@ -4,12 +4,11 @@ import "@elastic/eui/dist/eui_theme_light.css";
 import "./authLayout.css";
 import snoops_logo from "../../../assets/snoops_logo_name.svg";
 
-interface AuthLayoutProps {
+interface AuthLayoutProps extends React.PropsWithChildren {
   title: string;
-  description?: React.ReactNode;
 }
 
-const AuthLayout: React.FC<AuthLayoutProps> = ({ title, description }) => {
+const AuthLayout: React.FC<AuthLayoutProps> = ({ title, children }) => {
   return (
     <div className="auth-layout-container">
       <div className="background-image" />
@@ -28,11 +27,11 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ title, description }) => {
             <EuiCard
               title={title}
               textAlign="center"
-              description={description || ""}
+              description={children || ""}
               display="plain"
               paddingSize="l"
               style={{ borderRadius: "10px" }}
-            />
+            />            
           </div>
         </div>
       </div>

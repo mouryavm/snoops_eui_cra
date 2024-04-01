@@ -1,3 +1,6 @@
-import Layout from "./Layout";
+import PageLayout from "./PageLayout";
+import AuthLayout from "./AuthLayout";
 
-export default Layout
+const Layout = { PageLayout, AuthLayout };
+
+export default Layout;
