@@ -8,6 +8,8 @@ import {
   EuiFormRow,
   EuiText,
   EuiFieldText,
+  EuiFlexGrid,
+  EuiCheckbox,
 } from "@elastic/eui";
 import AuthLayout from "../../Components/Layout/AuthLayout/AuthLayout";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +23,10 @@ const LoginSchema = Yup.object().shape({
 const LoginScreen: React.FC = () => {
   const navigate = useNavigate();
   const { login } = useAuthContext();
+  const [checked, setChecked] = React.useState(false);
+  const onChange = (e: any) => {
+    setChecked(e.target.checked);
+  };
 
   return (
     <AuthLayout title="Login">
@@ -39,10 +45,7 @@ const LoginScreen: React.FC = () => {
           }
         }}
       >
-        {({
-          handleSubmit,
-          submitForm,
-        }) => (
+        {({ handleSubmit, submitForm }) => (
           <Form onSubmit={handleSubmit}>
             <EuiForm component="form">
               <EuiFormRow
@@ -88,15 +91,40 @@ const LoginScreen: React.FC = () => {
                   )}
                 </Field>
               </EuiFormRow>
+              <EuiFlexGrid
+                columns={2}
+                direction="column"
+                style={{ marginTop: 15, marginBottom: 15 }}
+              >
+                <EuiCheckbox
+                  id="1"
+                  label="Remember me"
+                  checked={checked}
+                  onChange={(e) => onChange(e)}
+                />
+                <EuiText
+                  size="s"
+                  color="subdued"
+                  textAlign="right"
+                  
+                >
+                  <p>
+                    <a onClick={() => navigate("/auth/forgot")}>
+                      Forgot Password
+                    </a>
+                  </p>
+                </EuiText>
+              </EuiFlexGrid>
+
               <EuiFormRow fullWidth>
                 <EuiButton
                   fullWidth
                   type="button"
                   onClick={async () => {
-                    submitForm()
+                    submitForm();
                   }}
                 >
-                  Log In
+                  Submit
                 </EuiButton>
               </EuiFormRow>
             </EuiForm>
@@ -107,21 +135,11 @@ const LoginScreen: React.FC = () => {
         size="s"
         color="subdued"
         textAlign="center"
-        style={{ marginTop: 7 }}
+        style={{ marginTop: 27 }}
       >
         <p>
           Don't have an account?{" "}
-          <a onClick={() => navigate("/auth/register")}>Register here</a>
-        </p>
-      </EuiText>
-      <EuiText
-        size="s"
-        color="subdued"
-        textAlign="center"
-        style={{ marginTop: 7 }}
-      >
-        <p>
-          <a onClick={() => navigate("/auth/forgot")}>Forgot Password</a>
+          <a onClick={() => navigate("/auth/register")}>Sign in</a>
         </p>
       </EuiText>
     </AuthLayout>

@@ -32,9 +32,9 @@ const SnoopUIHeader: React.FC<SnoopUIHeaderProps> = ({
   const handleLogout = () => logout();
 
   return (
-    <EuiHeader className="snoop-header">
+<EuiHeader className="snoop-header" >
       <div className="snoop-header-left">
-        <EuiImage src={logo} alt="test" height={40} />
+        <EuiImage src={logo} alt="test" height={35} />
         <div></div>
         <button
           onClick={toggleSidebar}
@@ -42,7 +42,7 @@ const SnoopUIHeader: React.FC<SnoopUIHeaderProps> = ({
         >
           <EuiButtonIcon
             iconType={isExpanded ? "menuLeft" : "menuRight"}
-            color="primary"
+            style={{color:'white'}}
             aria-label="Toggle Sidebar"
           />
         </button>
@@ -50,7 +50,7 @@ const SnoopUIHeader: React.FC<SnoopUIHeaderProps> = ({
       <div className="snoop-header-right">
         <div className="snoop-avatar-container">
           <button onClick={toggleCallout}>
-            <EuiAvatar name="John Doe" size="m" />
+            <EuiAvatar name="John Doe" size="m" color="#fff" />
           </button>
           {isCalloutVisible && (
             <EuiCallOut

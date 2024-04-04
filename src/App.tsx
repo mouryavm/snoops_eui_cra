@@ -4,6 +4,7 @@ import { Suspense } from "react";
 
 import "@elastic/eui/dist/eui_theme_light.css";
 import "@elastic/charts/dist/theme_light.css";
+
 import AuthProvider from "./context/AuthContext";
 
 const MyApp = () => (

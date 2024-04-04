@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
 body {
   overflow: hidden;
 }
@@ -6,33 +9,120 @@ body {
   display: flex;
 }
 
-.background-image {
+/* .background-image {
   background-image: url('D:/Work/snoops_eui_cra/src/assets/client-management-1.png');
   background-size:contain;
   background-repeat: no-repeat;
   background-position: center;
   flex: 1;
+} */
+.background-image {
+  background-image:  url('D:/Work/snoops_eui_cra/src/assets/client-management-1.png'), linear-gradient(to right, rgba(104, 99, 249, 1), rgba(93, 39, 175, 1));
+  background-size: auto 65%, cover; /* Adjust as needed */
+  background-repeat: no-repeat;
+  background-position: center calc(100% - 80px), center;
+  flex: 1;
 }
 
+
 .auth-container {
+  background-color: white;
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   height: 100vh;
-  width: 50%; /* Adjust as needed */
+  width: 45%; /* Adjust as needed */
+  
 }
 
 .card-container {
   max-width: 400px;
   width: 100%;
   /* box-shadow: 0px 4px 10px rgba(0, 200, 255, 0.1);  */
-  text-align: center;
+  text-align: left;
 }
 
 .card-wrapper {
-  box-shadow: 0px 4px 8px rgba(97, 79, 231, 0.323);
+  /* box-shadow: 0px 4px 8px rgba(97, 79, 231, 0.323); */
+  
 }
 
 .image-container {
-  margin-bottom: 20px; /* Adjust as needed */
+  margin-bottom: 50px; 
+}
+
+/* @media (max-width: 600px) {
+  .image-container {
+    display: none; 
+  }
+
+  .card-container {
+    width: auto; 
+    max-width: 100%; 
+  }
+} */
+
+
+/* .threats {
+  position: absolute;
+  top: 230px; 
+  left: 470px; 
+}
+.virus {
+  position: absolute;
+  top: 340px; 
+  left: 540px; 
+} */
+
+
+@keyframes moveThreatsUpDown {
+  0%, 100% {
+    top: 30%;
+    opacity: 1;
+  }
+  50% {
+    top: 50%;
+    opacity: 0.5;
+  }
+}
+
+@keyframes moveVirusUpDown {
+  0%, 100% {
+    top: 50%;
+    opacity: 1;
+  }
+  50% {
+    top: 30%;
+    opacity: 0.5;
+  }
+}
+
+.threats {
+  position: absolute;
+  top: 30%; 
+  left: 40%; 
+  transform: translate(-50%, -50%);
+  animation: moveThreatsUpDown 4s infinite alternate; 
+}
+
+.virus {
+  position: absolute;
+  top: 50%; 
+  left: 45%; 
+  transform: translate(-50%, -50%);
+  animation: moveVirusUpDown 4s infinite alternate; 
+}
+
+
+.quotes {
+  position: absolute;
+  top: 8%; 
+  left: 8%; 
+  transform: translate(-50%, -50%);
+}
+.quotes_text {
+  position: absolute;
+  top: 11%; 
+  left: 25.8%; 
+  transform: translate(-50%, -50%);
 }
