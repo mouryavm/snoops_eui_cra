@@ -17,7 +17,7 @@ body {
   flex: 1;
 } */
 .background-image {
-  background-image:  url('D:/Work/snoops_eui_cra/src/assets/client-management-1.png'), linear-gradient(to right, rgba(104, 99, 249, 1), rgba(93, 39, 175, 1));
+  background-image:  url('./client-management-1.png'), linear-gradient(to right, rgba(104, 99, 249, 1), rgba(93, 39, 175, 1));
   background-size: auto 65%, cover; /* Adjust as needed */
   background-repeat: no-repeat;
   background-position: center calc(100% - 80px), center;
