@@ -1,4 +1,3 @@
-// SnoopUIHeader.tsx
 import React, { useState } from "react";
 import {
   EuiHeader,
@@ -13,6 +12,7 @@ import {
 import logo from "../../../assets/Snoops.svg";
 import "./SnoopUIHeader.css";
 import { useAuthContext } from "../../../context/AuthContext/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 interface SnoopUIHeaderProps {
   isExpanded: boolean;
@@ -23,16 +23,17 @@ const SnoopUIHeader: React.FC<SnoopUIHeaderProps> = ({
   isExpanded,
   toggleSidebar,
 }) => {
+  const navigate = useNavigate();
   const [isCalloutVisible, setIsCalloutVisible] = useState(false);
 
   const toggleCallout = () => setIsCalloutVisible((prev) => !prev);
-  
-  const {  logout } = useAuthContext();
+
+  const { logout } = useAuthContext();
 
   const handleLogout = () => logout();
 
   return (
-<EuiHeader className="snoop-header" >
+    <EuiHeader className="snoop-header">
       <div className="snoop-header-left">
         <EuiImage src={logo} alt="test" height={35} />
         <div></div>
@@ -42,11 +43,12 @@ const SnoopUIHeader: React.FC<SnoopUIHeaderProps> = ({
         >
           <EuiButtonIcon
             iconType={isExpanded ? "menuLeft" : "menuRight"}
-            style={{color:'white'}}
+            style={{ color: "white" }}
             aria-label="Toggle Sidebar"
           />
         </button>
       </div>
+
       <div className="snoop-header-right">
         <div className="snoop-avatar-container">
           <button onClick={toggleCallout}>
@@ -58,9 +60,11 @@ const SnoopUIHeader: React.FC<SnoopUIHeaderProps> = ({
               title="John Doe"
               color="primary"
               iconType="user"
-              style={{marginTop:20}}
+              style={{ marginTop: 180 }}
             >
               <EuiText> johndoe@example.com</EuiText>
+              <EuiText onClick={()=>navigate('/inviteOrg')}> Invite Organization</EuiText>
+              {/* <EuiButton size="s" style={{backgroundColor:'white'}}>Invite Organization</EuiButton> */}
               <EuiButton onClick={handleLogout}>Logout</EuiButton>
               <EuiButtonEmpty size="s" onClick={toggleCallout}>
                 Close

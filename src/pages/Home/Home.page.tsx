@@ -1,13 +1,9 @@
-import { useState } from 'react';
-import {
-  EuiSwitch,
-  EuiSpacer,
-} from '@elastic/eui';
-
+import { useState } from "react";
+import { EuiSwitch, EuiSpacer } from "@elastic/eui";
 
 const HomePage = () => {
   const [isLoading, setLoading] = useState(false);
-  const onToggleChange = (e:any) => {
+  const onToggleChange = (e: any) => {
     setLoading(e.target.checked);
   };
   return (
@@ -22,4 +18,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage
+export default HomePage;
