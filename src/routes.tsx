@@ -15,6 +15,7 @@ import AddSourcesPage from "./pages/Logs/AddSources/AddSourcesPage";
 import FileUpload from "./pages/Logs/AddSources/Upload/FileUpload";
 import S3bucket from "./pages/Logs/AddSources/s3Bucket";
 import { useAuthContext } from "./context/AuthContext/AuthProvider";
+import InviteOrg from "./pages/InviteOrg/InviteOrg";
 
 const StatsPage = React.lazy(() => import("./pages/Stats"));
 const HomePage = React.lazy(() => import("./pages/Home"));
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "logs/addSources/s3bucket",
         element: <S3bucket />,
+      },
+      {
+        path: "inviteOrg",
+        element: <InviteOrg />,
       },
 
       {

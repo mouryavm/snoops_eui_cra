@@ -7,8 +7,9 @@ import "@elastic/charts/dist/theme_light.css";
 
 import AuthProvider from "./context/AuthContext";
 
+
 const MyApp = () => (
-  <EuiProvider colorMode="light">
+  <EuiProvider  colorMode="light">
     <Suspense fallback="loading...">
       <AuthProvider>
         <Router />
